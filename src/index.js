@@ -1,3 +1,9 @@
+const ENV = process.env.NODE_ENV
+
+if(ENV === 'development') {
+    require('dotenv').config()
+}
+
 const express = require('express')
 const app = express()
 
@@ -7,6 +13,8 @@ app.get("/", (req, res, next) => {
     res.json({hello: "World"})
 })
 
-app.listen(3000, () => {
-    console.log("Servidor iniciado!");
+const PORT = process.env.PORT
+
+app.listen(PORT, () => {
+    console.log(`Server Started At Port ${PORT} in ${ENV}`);
 })
